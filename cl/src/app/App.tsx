@@ -1,15 +1,14 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import React, {useEffect} from "react";
+import React, {useEffect} from "react"
 import {Toaster} from "react-hot-toast";
-import Home from "./Home.tsx";
 import {DevTools} from "jotai-devtools";
-import Navigation from "./Navigation.tsx";
 import {useAtom} from "jotai";
 import {ThemeAtom} from "../atoms/ThemeAtom.tsx";
 
+import ROUTES from "./routes"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 const App = () => {
-
+	const router = createBrowserRouter(ROUTES)
     const [theme, setTheme] = useAtom(ThemeAtom);
 
     useEffect(() => {
@@ -17,15 +16,12 @@ const App = () => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme])
 
-    return (<>
-
-            <Navigation />
+    return (
+        <>
             <Toaster/>
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-            </Routes>
+                <RouterProvider router={router} />
             <DevTools />
-
-    </>)
+        </>
+    )
 }
 export default App;
