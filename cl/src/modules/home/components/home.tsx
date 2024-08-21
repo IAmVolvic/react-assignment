@@ -1,14 +1,44 @@
-import React, {useEffect, useState} from "react";
-import {apiClient} from "@app/components/apiClient.ts";
-import {AxiosResponse} from "axios";
+import { useGetPatientDetails } from "../hooks/useGetPatientDetails";
 
-
+type Patient = {
+    id: number;
+    name: string;
+}
 
 export const HomePage = () => {
 
+    const { data: response, isLoading, refetch } = useGetPatientDetails();
+
+    if ( isLoading ) {
+        return (
+            <div>LOADING</div>
+        )
+    }
+
+    if (!response) {
+        return (
+            <div className="flex flex-col items-center justify-center relative lg:my-52">
+                <div className="t-sub text-2xl lg:text-4xl">No Results</div>
+                <div className="t-sub text-8xl lg:text-9xl">Found</div>
+            </div>
+        )
+    }
+
+
+    const data = response as Patient[];
+
+
+
     return (
-        <div>
-            <h1 className="menu-title text-5xl m-5">The Hospital App</h1>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 relative">
+            {
+                Object.values(data).map((value: Patient) => 
+                    (
+                        <div key={value.id}>
+                            {value.name}
+                        </div>
+                    ))
+            }
         </div>
-    );
+    )
 }
