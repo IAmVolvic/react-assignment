@@ -8,7 +8,8 @@ import ErrorRoutes from "@modules/errors/routes";
 const ROUTES: RouteObject[] = [
 	...HomeRoutes,
 	...ProductsRoutes,
-	//Errors PAGE MUST BE AT THE BOTTOM SHIITER
+	
+	//Errors
 	...ErrorRoutes
 ]
 

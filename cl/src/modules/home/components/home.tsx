@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {apiClient} from "@app/components/apiClient.ts";
 import {AxiosResponse} from "axios";
-import {Patients} from "@app/components/Api.ts";
+
 
 
 export const HomePage = () => {
