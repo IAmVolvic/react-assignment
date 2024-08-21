@@ -1,5 +1,5 @@
 import { RouteObject } from "react-router-dom";
-import { ErrorPage } from "./components/index";
+import { ErrorPage } from "./components/errors";
 import { NavigationTemplate } from "@app/components/NavigationTemplate";
 
 const ROUTES: RouteObject[] = [
