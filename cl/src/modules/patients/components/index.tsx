@@ -1,7 +1,7 @@
 import { useGetPatientDetails, Patient } from "../hooks/useGetPatientDetails";
 
-export const HomePage = () => {
 
+export const PatientsPage = () => {
     const { data: response, isLoading, refetch } = useGetPatientDetails();
 
     if ( isLoading ) {

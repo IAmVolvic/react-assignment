@@ -1,15 +1,15 @@
 import { RouteObject } from "react-router-dom";
 import { NavigationTemplate } from "@app/components/NavigationTemplate";
-import { ProductsPage } from "./components/products";
+import { PatientsPage } from "./components";
 
 const ROUTES: RouteObject[] = [
 	{
-		path: '/products',
+		path: '/patients',
 		element: <NavigationTemplate />,
 		children: [
 			{
 				index:true,
-				element:  <ProductsPage />
+				element:  <PatientsPage />
 			}
 		]
 	}
