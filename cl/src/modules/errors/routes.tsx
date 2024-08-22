@@ -1,10 +1,10 @@
 import { RouteObject } from "react-router-dom";
 import { ErrorPage } from "./components/errors";
-import { NavigationTemplate } from "@app/components/NavigationTemplate";
+import { NavigationSide } from "@app/components/navigation";
 
 const ROUTES: RouteObject[] = [
 	{
-		element: <NavigationTemplate />,
+		element: <NavigationSide />,
 		children: [
 			{
 				path: '*',

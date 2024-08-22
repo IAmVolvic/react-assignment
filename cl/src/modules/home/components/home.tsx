@@ -1,39 +1,37 @@
-import { useGetPatientDetails, Patient } from "../hooks/useGetPatientDetails";
+import { useEffect } from "react"
+import ThemeSwitcher from "@app/components/ThemeSwitcher"; 
+import { UseNavigationBreadcrumbName } from "@app/components/navigation/NavigationBreadcrumbContext";
+
+import { FaStarOfLife } from "react-icons/fa6";
+import { FaBookmark } from "react-icons/fa6";
 
 export const HomePage = () => {
-
-    const { data: response, isLoading, refetch } = useGetPatientDetails();
-
-    if ( isLoading ) {
-        return (
-            <div>LOADING</div>
-        )
-    }
-
-    if (!response) {
-        return (
-            <div className="flex flex-col items-center justify-center relative lg:my-52">
-                <div className="t-sub text-2xl lg:text-4xl">No Results</div>
-                <div className="t-sub text-8xl lg:text-9xl">Found</div>
-            </div>
-        )
-    }
-
-
-    const data = response as Patient[];
-
-
-
+    const { setBreadName } = UseNavigationBreadcrumbName();
+    
+    useEffect(() => {
+        setBreadName(undefined);
+    }, [setBreadName]);
+    
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 relative">
-            {
-                Object.values(data).map((value: Patient) => 
-                    (
-                        <div key={value.id}>
-                            {value.name}
-                        </div>
-                    ))
-            }
+        <div className="flex flex-row flex-wrap">
+
+            <div className="flex flex-col gap-8 w-full bg-base-content rounded-2xl p-10 bg-250px lg:bg-40rem bannerBG">
+                <div className="flex flex-col gap-2">
+                    <div className="flex flex-row items-center gap-2 text-base-300 text-sm font-semibold">
+                        <FaBookmark />
+                        <span>Update</span>
+                        <span>0.0.1</span>
+                    </div>
+
+                    <div className="text-xl font-bold text-base-100 lg:text-3xl"> Welcome to HappyHealth </div>
+                </div>
+                
+                <div>
+                    <button className="bg-secondary rounded-lg px-6 py-1 text-primary-content">Learn more</button>
+                </div>
+            </div>
+
+            <ThemeSwitcher />
         </div>
     )
 }

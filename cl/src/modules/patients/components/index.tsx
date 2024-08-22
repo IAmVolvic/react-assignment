@@ -1,12 +1,24 @@
+import { useEffect } from "react";
+import { UseNavigationBreadcrumbName } from "@app/components/navigation/NavigationBreadcrumbContext";
 import { useGetPatientDetails, Patient } from "../hooks/useGetPatientDetails";
 
 
+
 export const PatientsPage = () => {
+    const { setBreadName } = UseNavigationBreadcrumbName();
+    
+    useEffect(() => {
+        setBreadName(undefined);
+    }, [setBreadName]);
+    
+    
     const { data: response, isLoading, refetch } = useGetPatientDetails();
 
     if ( isLoading ) {
         return (
-            <div>LOADING</div>
+            <div className="flex justify-center items-center mt-10">
+                <div className="circle-loader border-2 border-base-100 border-l-primary w-44 h-44" />
+            </div>
         )
     }
 
@@ -21,7 +33,6 @@ export const PatientsPage = () => {
 
 
     const data = response as Patient[];
-
 
 
     return (

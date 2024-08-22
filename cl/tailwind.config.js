@@ -2,6 +2,14 @@ module.exports = {
     purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
     darkMode: false, // or 'media' or 'class'
     theme: {
+        backgroundSize: {
+            'auto': 'auto',
+            'cover': 'cover',
+            'contain': 'contain',
+            '40rem': '40rem',
+            '250px': '250px',
+        },
+
         extend: {},
     },
     variants: {
@@ -13,10 +21,9 @@ module.exports = {
     ],
     daisyui: {
         themes: [
-
             "light",
             "dark",
-             "cupcake",
+            "cupcake",
             "bumblebee",
             "emerald",
             "corporate",
