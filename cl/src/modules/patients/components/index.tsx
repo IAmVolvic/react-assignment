@@ -3,12 +3,14 @@ import { UseNavigationBreadcrumbName } from "@app/components/navigation/Navigati
 import { UseRightModule } from "@app/components/right-module/rightModuleContext";
 import { PatientsBlocks } from "./index-components/patientsBlocks";
 import { FaPlus } from "react-icons/fa6";
+import { createPortal } from "react-dom";
+
 
 
 export const PatientsPage = () => {
     const { setBreadName } = UseNavigationBreadcrumbName();
     const { setModuleOpen, setIgnoreClickRefs } = UseRightModule();
-
+    const rightSideModule = document.getElementById('right-side-module');
     const ref = useRef(null);
 
     useEffect(() => {
@@ -35,7 +37,9 @@ export const PatientsPage = () => {
             
                 <PatientsBlocks />
             </div>
+
+            {rightSideModule && createPortal(<div>Hello</div>, rightSideModule)}
+
         </>
-        
     )
 }

@@ -5,7 +5,7 @@ export const PatientPage = () => {
     const { setBreadName } = UseNavigationBreadcrumbName();
 
     useEffect(() => {
-        setBreadName('Loading Patient');
+        setBreadName('bob');
     }, [setBreadName]);
 
 
