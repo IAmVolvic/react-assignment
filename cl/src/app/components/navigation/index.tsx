@@ -14,7 +14,7 @@ export const NavigationSide = () => {
      const [isNavOpen, setIsNavOpen] = useState(false);
 
 	return (
-       <div className="flex flex-row flex-nowrap justify-center items-center relative">   
+       <div className="flex flex-row flex-nowrap overflow-hidden justify-center items-center relative">   
             <div className="hidden flex-col gap-8 w-80 min-h-screen bg-base-100 p-5 z-0 lg:flex">
                 <NavigationTitle />
                 <NavigationButtons />
@@ -33,19 +33,22 @@ export const NavigationSide = () => {
                 
             </div>
 
-            <div className="flex flex-col gap-8 w-full min-h-screen bg-base-300 p-5  z-0">
-                <button onClick={() => setIsNavOpen(true)} className="bg-base-100 w-min p-2 rounded-md text-base-content lg:hidden">
-                    <RxHamburgerMenu />
-                </button>
+            <div className="flex flex-col w-full bg-base-300 z-0">
+                <div className="flex flex-col h-screen overflow-y-auto p-5 gap-8">
+                    <button onClick={() => setIsNavOpen(true)} className="bg-base-100 w-min p-2 rounded-md text-base-content lg:hidden">
+                        <RxHamburgerMenu />
+                    </button>
 
-                <NavigationBreadcrumbProvider>
-                    <div className="flex flex-row justify-between">
-                        <NavigationBreadcrumb />
-                        <ThemeSwitcher />
-                    </div>
+                    <NavigationBreadcrumbProvider>
+                        <div className="flex flex-row justify-between">
+                            <NavigationBreadcrumb />
+                            <ThemeSwitcher />
+                        </div>
+                        
+                        <Outlet />
                     
-                    <Outlet />
-                </NavigationBreadcrumbProvider>
+                    </NavigationBreadcrumbProvider>
+                </div>
             </div>
        </div>
 	)

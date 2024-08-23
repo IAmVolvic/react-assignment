@@ -16,6 +16,10 @@ export const useGetPatientDetails = () => {
         queryFn: async (): Promise<Patients[]> => {
             return  newAPI.patients.patientsList()
             .then((res) => res.data)
-        }
+        },
+        refetchInterval: 1000,
+        refetchOnMount: true,
+        refetchOnReconnect: true,
+        refetchOnWindowFocus: true,
     });
 }
