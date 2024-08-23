@@ -14,7 +14,7 @@ export const PatientsPage = () => {
     }, [setBreadName]);
     
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-14 relative mt-5">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-16 relative mt-5">
             <div className="flex flex-col gap-2">
                 <div className="flex flex-row justify-center items-center border-2 border-dashed border-base-content rounded-2xl w-full h-52 p-8">
                     <FaPlus className="text-xl text-base-content" />

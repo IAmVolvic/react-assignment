@@ -48,44 +48,6 @@ export const PatientsBlocks = () => {
                     </div>
                 </div>
             ))}
-
-            {data.map((patient, index) => (
-                <div key={index} className="flex flex-col gap-5 bg-base-content rounded-2xl w-full h-52 p-8 relative">
-                    <div className="w-20 h-20 bg-base-100 border-2 border-base-100 rounded-2xl absolute -top-10">
-                        <img src={`https://api.dicebear.com/9.x/adventurer/svg?seed=xZ${patient.name}`} alt="Patient" className="w-full h-full object-cover rounded-2xl" />
-                    </div>
-
-                    <div className="absolute top-0 right-0 px-6 py-3">
-                        <div className="text-6xl font-semibold text-base-300 opacity-20">{patient.id}</div>
-                    </div>
-
-                    <div className="text-2xl font-semibold text-base-300 mt-10">{patient.name}</div>
-
-                    <div className="w-full flex flex-row flex-nowrap gap-3 mt-5">
-                        <button className="w-full bg-base-100 py-1.5 rounded-xl"> View </button>
-                        <button className="w-full bg-error text-black py-1.5 rounded-xl"> Delete </button>
-                    </div>
-                </div>
-            ))}
-
-            {data.map((patient, index) => (
-                <div key={index} className="flex flex-col gap-5 bg-base-content rounded-2xl w-full h-52 p-8 relative">
-                    <div className="w-20 h-20 bg-base-100 border-2 border-base-100 rounded-2xl absolute -top-10">
-                        <img src={`https://api.dicebear.com/9.x/adventurer/svg?seed=xZ${patient.name}`} alt="Patient" className="w-full h-full object-cover rounded-2xl" />
-                    </div>
-
-                    <div className="absolute top-0 right-0 px-6 py-3">
-                        <div className="text-6xl font-semibold text-base-300 opacity-20">{patient.id}</div>
-                    </div>
-
-                    <div className="text-2xl font-semibold text-base-300 mt-10">{patient.name}</div>
-
-                    <div className="w-full flex flex-row flex-nowrap gap-3 mt-5">
-                        <button className="w-full bg-base-100 py-1.5 rounded-xl"> View </button>
-                        <button className="w-full bg-error text-black py-1.5 rounded-xl"> Delete </button>
-                    </div>
-                </div>
-            ))}
         </>
     )
 }
