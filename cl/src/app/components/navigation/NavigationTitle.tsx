@@ -8,7 +8,7 @@ export const NavigationTitle = () => {
                 <div className="font-semibold">HappyHealth</div>
             </div>
 
-            <img src="https://avatar.iran.liara.run/public/job/doctor/male" className="bg-primary border-2 border-success rounded-full w-10 h-10" />
+            <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=xZ" className="bg-primary border-2 border-success rounded-full w-10 h-10" />
         </div>
 	)
 }
