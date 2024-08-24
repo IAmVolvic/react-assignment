@@ -87,7 +87,7 @@ export const NewPatientPortal = () => {
 
             <div className="w-full flex flex-row flex-nowrap gap-3 mt-5">
                 <button onClick={() => closeModule()} className="w-full bg-base-200 py-1.5 rounded-xl text-center"> Cancel </button>
-                <button onClick={() => createNewPatient()} className="w-full bg-base-300 py-1.5 rounded-xl"> Create </button>
+                <button onClick={() => createNewPatient()} className="w-full bg-base-content text-base-300 py-1.5 rounded-xl"> Create </button>
             </div>
         </div>
     )

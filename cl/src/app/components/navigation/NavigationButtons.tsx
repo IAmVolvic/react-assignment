@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom"
 
 import { FaHouse } from "react-icons/fa6";
 import { FaUserInjured } from "react-icons/fa6";
-import { FaBookMedical } from "react-icons/fa6";
 import { FaDisease } from "react-icons/fa6";
 
 

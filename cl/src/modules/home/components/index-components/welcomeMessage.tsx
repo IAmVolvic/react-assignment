@@ -14,7 +14,7 @@ export const WelcomeMessage = () => {
             </div>
             
             <div>
-                <button className="bg-secondary rounded-lg px-6 py-1 text-primary-content">Learn more</button>
+                <button className="bg-base-100 text-base-content rounded-lg px-6 py-1.5">Learn more</button>
             </div>
         </div>
     )
