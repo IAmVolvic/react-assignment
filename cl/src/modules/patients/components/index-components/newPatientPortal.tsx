@@ -1,9 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { UseRightModule } from "@app/components/right-module/rightModuleContext";
 import { useGetDiseases } from "@modules/patients/hooks/useGetDiseaseDetails";
 import { CustomSelect, Option } from "@app/components/multiSelect";
 import { usePostPatient } from "@modules/patients/hooks/usePostPatient";
 import { usePostDiagnoses } from '@modules/patients/hooks/usePostDiagnoses';
+import toast from 'react-hot-toast';
+
 
 export const NewPatientPortal = () => {
     const [patientName, setPatientName] = useState<string>("");
@@ -39,6 +41,8 @@ export const NewPatientPortal = () => {
     }
 
     const createNewPatient = () => {
+        if (!patientName.trim()) { toast.error('Failed to create patient'); return; }
+
         usePostPatient(patientName).then((res) => {
             selectedItems.map((item) => {
                 if (isNaN(parseInt(item.value))) { return; }
@@ -46,9 +50,9 @@ export const NewPatientPortal = () => {
             });
         });
 
+        toast.success('Successfully created patient!');  
         closeModule();
     }
-
 
     return (
         <div className="flex flex-col justify-between h-full">

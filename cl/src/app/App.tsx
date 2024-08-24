@@ -21,7 +21,7 @@ const App = () => {
 
     return (
         <>
-            {/* <Toaster/> */}
+            <Toaster/>
 
             <QueryClientProvider client={QUERY_CLIENT}>
                 <RouterProvider router={router} />
