@@ -11,11 +11,13 @@ export const RightSideModule = () => {
 
 	return (
         <>
-            <div ref={ref} className={`absolute bg-base-100 w-96 h-full right-0 transition-transform duration-500 z-20 drop-shadow-xl p-5 ${ isModuleOpen ? 'translate-x-0' : 'translate-x-full' }`}>   
-                <div> <button onClick={() => setModuleOpen(false)} className="p-2"><CgClose /></button> </div>
+            <div ref={ref} className={`absolute bg-base-100 w-96 h-full right-0 transition-transform duration-500 z-20 drop-shadow-xl ${ isModuleOpen ? 'translate-x-0' : 'translate-x-full' }`}>   
+                <div className="flex flex-col h-full p-5">
+                    <div className="flex justify-end">
+                        <button onClick={() => setModuleOpen(false)} className="flex justify-center items-center w-6 h-6"><CgClose /></button>
+                    </div>
 
-                <div id="right-side-module">
-
+                    <div id="right-side-module" className="h-full"></div>
                 </div>
             </div>
         </>

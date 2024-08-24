@@ -21,11 +21,6 @@ export const NavigationButtons = () => {
                <div> Patients </div>
           </NavLink>
 
-          <NavLink className={(values) => `flex flex-row items-center gap-3 w-full px-4 py-3 rounded-2xl text-base-content ${values.isActive  ? 'bg-base-300' : ''}` } to="/diagnosis">
-               <FaBookMedical size={"1.2rem"} />
-               <div> Diagnosis </div>
-          </NavLink>
-
           <NavLink className={(values) => `flex flex-row items-center gap-3 w-full px-4 py-3 rounded-2xl text-base-content ${values.isActive  ? 'bg-base-300' : ''}` } to="/diseases">
                <FaDisease size={"1.2rem"} />
                <div> Diseases </div>
