@@ -1,8 +1,14 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useGetPatientDetails, Patient } from "../../hooks/useGetPatientDetails";
+import { useGetPatientsDetails, Patient } from "../../hooks/useGetPatientsDetails";
+import { RemovePatient } from "./removePatient";
+
+
 
 export const PatientsBlocks = () => {
-    const { data: response, isLoading, refetch } = useGetPatientDetails();
+    const [selectedPatientId, setSelectedPatientId] = useState<number | null>(null);
+    const { data: response, isLoading } = useGetPatientsDetails();
+    const deletePatientAgreementModal = document.getElementById('deletePatientAgreement') as HTMLDialogElement;
 
     if ( isLoading ) {
         return (
@@ -29,6 +35,14 @@ export const PatientsBlocks = () => {
     const data = response as Patient[];
 
 
+    const handleDeleteAgreement = (id: number) => {
+        setSelectedPatientId(id);
+        const deletePatientAgreementModal = document.getElementById('deletePatientAgreement');
+        if (deletePatientAgreementModal) {
+            (deletePatientAgreementModal as HTMLDialogElement).showModal();
+        }
+    };
+    
     return (
         <>
             {data.map((patient, index) => (
@@ -45,10 +59,13 @@ export const PatientsBlocks = () => {
 
                     <div className="w-full flex flex-row flex-nowrap gap-3 mt-5">
                         <Link className="w-full bg-base-100 py-1.5 rounded-xl text-center" to={`/patients/${patient.id}`}> View </Link>
-                        <button className="w-full bg-error text-black py-1.5 rounded-xl"> Delete </button>
+                        <button onClick={() => handleDeleteAgreement(patient.id!)} className="w-full bg-error text-black py-1.5 rounded-xl"> Delete </button>
                     </div>
                 </div>
             ))}
+
+
+            <RemovePatient patientId={selectedPatientId} />
         </>
     )
 }
