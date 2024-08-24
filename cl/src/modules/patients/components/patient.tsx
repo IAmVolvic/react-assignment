@@ -3,15 +3,14 @@ import { useParams } from 'react-router-dom';
 
 import { UseNavigationBreadcrumbName } from "@app/components/navigation/NavigationBreadcrumbContext";
 import { useGetPatientDetails, Patient } from "../hooks/useGetPatientDetails";
-
-import { FaDisease } from "react-icons/fa6";
-import { FaRegEdit } from "react-icons/fa";
+import { PatientDiagnoseHistoryList } from "./patient-components/patientDiagnoseHistoryList";
 
 export const PatientPage = () => {
     const { id } = useParams<{ id: string }>();
     const { setBreadName } = UseNavigationBreadcrumbName();
 
     const { data: response, isLoading } = useGetPatientDetails(Number(id));
+  
     const patient = response as Patient[];
 
     const [patientName, setPatientName] = useState<string>("");
@@ -63,13 +62,15 @@ export const PatientPage = () => {
                 <button className="text-sm bg-base-100 text-base-content py-1.5 px-8 rounded-xl text-center lg:text-xl">Save Edit</button>
             </div>
 
-            <div className="flex flex-col gap-8 justify-between w-full bg-base-100 p-5 rounded-b-2xl drop-shadow-xl">
+            <div className="flex flex-col gap-8 w-full bg-base-100 p-5 rounded-b-2xl drop-shadow-xl">
                 <div className="flex flex-col gap-2 w-full">
                     <div className="text-lg">Patient Name</div>
                     <input type="text" placeholder={patientName} value={patientName} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPatientName(event.target.value) } className="w-full lg:w-96 bg-base-300 p-3 rounded-xl" />
                 </div>
 
-                <div className="w-full overflow-x-auto">
+                <div className="flex flex-col gap-2 w-full overflow-x-auto">
+                    <div className="text-lg">Diagnosed History</div>
+
                     <table className="table">
                         {/* head */}
                         <thead>
@@ -82,20 +83,7 @@ export const PatientPage = () => {
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <th>
-                                    <FaDisease size={"2rem"} />
-                                </th>
-                                <td>
-                                    <span className="text-lg">Flu</span>
-                                </td>
-                                <td>
-                                    <span className="text-lg">08/05/2024</span>
-                                </td>
-                                <th>
-                                    <button ><FaRegEdit size={"1.5rem"} /></button>
-                                </th>
-                            </tr>
+                            <PatientDiagnoseHistoryList patientId={Number(id)} />
                         </tbody>
                     </table>
                 </div>
