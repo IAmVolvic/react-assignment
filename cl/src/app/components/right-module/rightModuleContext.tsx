@@ -12,7 +12,7 @@ interface RightModuleContextProps {
 const RightModuleContextContext = createContext<RightModuleContextProps | undefined>(undefined);
 
 export const RightModuleProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [isModuleOpen, setModuleOpen] = useState(true);
+    const [isModuleOpen, setModuleOpen] = useState(false);
     const [ignoreClickRefs, setIgnoreClickRefs] = useState<React.RefObject<HTMLElement>[]>([]);
 
     const toggleModule = () => {
