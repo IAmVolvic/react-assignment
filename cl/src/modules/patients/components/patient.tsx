@@ -74,7 +74,7 @@ export const PatientPage = () => {
                     </div>
                 </div>
 
-                <button onClick={handleUsernameChange} className="text-sm bg-base-100 text-base-content py-1.5 px-8 rounded-xl text-center lg:text-xl">Save Edit</button>
+                <button onClick={handleUsernameChange} className="bg-base-100 text-base-content px-6 py-1.5 rounded-xl text-center">Save Edit</button>
             </div>
 
             <div className="flex flex-col gap-8 w-full bg-base-100 p-5 rounded-b-2xl drop-shadow-xl">
@@ -87,7 +87,7 @@ export const PatientPage = () => {
                     <div className="flex justify-between items-center">
                         <div className="text-lg">Diagnosed History</div>
 
-                        <button ref={ref} onClick={() => setModuleOpen(true)} className="text-sm bg-base-300 text-base-content py-1.5 px-8 rounded-xl text-center lg:text-xl">
+                        <button ref={ref} onClick={() => setModuleOpen(true)} className="bg-base-300 text-base-content px-6 py-1.5 rounded-xl text-center">
                             Add Diagnose
                         </button>
                     </div>
