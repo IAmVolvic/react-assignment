@@ -1,7 +1,9 @@
 node_modules
+dist
 bin
 .idea
 obj
 pgdata
 alexsolution
 dist
+public/index.html
