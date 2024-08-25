@@ -1,8 +1,10 @@
+import React, { useState } from "react";
 import { useGetPatientDiagnoseHistory } from "../../hooks/useGetPatientDiagnoseHistory";
 
 import { FaDisease } from "react-icons/fa6";
-import { FaRegEdit } from "react-icons/fa";
+import { FaTrashCan } from "react-icons/fa6";
 import { Timemat } from "@app/hooks/useTimemat";
+import { RemoveDiagnose } from "./removeDiagnose";
 
 
 interface RemovePatientProps {
@@ -10,12 +12,21 @@ interface RemovePatientProps {
 }
 
 export const PatientDiagnoseHistoryList: React.FC<RemovePatientProps> = ({ patientId }) => {
+    const [selectedPatientId, setSelectedPatientId] = useState<number | null>(null);
     const { data: response, isLoading } = useGetPatientDiagnoseHistory(patientId);
+
+    const handleDeleteAgreement = (id: number) => {
+        setSelectedPatientId(id);
+        const deletePatientAgreementModal = document.getElementById('deletePatientAgreement');
+        if (deletePatientAgreementModal) {
+            (deletePatientAgreementModal as HTMLDialogElement).showModal();
+        }
+    };
 
     if ( isLoading ) {
         return (
             <tr>
-                <th></th>
+                <th className="hidden lg:block"></th>
                 <td>
                     <span className="text-lg">Loading</span>
                 </td>
@@ -25,10 +36,10 @@ export const PatientDiagnoseHistoryList: React.FC<RemovePatientProps> = ({ patie
         )
     }
 
-    if (!response) {
+    if (!response || response.length < 1) {
         return (
             <tr>
-                <th></th>
+                <th className="hidden lg:block"></th>
                 <td>
                     <span className="text-lg">No Data Found</span>
                 </td>
@@ -44,7 +55,7 @@ export const PatientDiagnoseHistoryList: React.FC<RemovePatientProps> = ({ patie
         <>
             {response.map((diagnose) => (
                 <tr key={diagnose.diagnoseId}>
-                    <th>
+                    <th className="hidden lg:block">
                         <FaDisease size={"2rem"} />
                     </th>
                     <td>
@@ -54,10 +65,12 @@ export const PatientDiagnoseHistoryList: React.FC<RemovePatientProps> = ({ patie
                         <span className="text-lg">{Timemat(diagnose.diagnoseTimestamp!)}</span>
                     </td>
                     <th>
-                        <button ><FaRegEdit size={"1.5rem"} /></button>
+                        <button onClick={() => handleDeleteAgreement(diagnose.diagnoseId!)} className="p-3 rounded-xl bg-error text-error-content" ><FaTrashCan size={"1.3rem"} /></button>
                     </th>
                 </tr>
             ))}
+
+            <RemoveDiagnose diagnoseId={selectedPatientId} />
         </>
     )
 }

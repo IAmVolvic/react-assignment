@@ -59,7 +59,7 @@ export const PatientsBlocks = () => {
 
                     <div className="w-full flex flex-row flex-nowrap gap-3 mt-5">
                         <Link className="w-full bg-base-100 text-base-content py-1.5 rounded-xl text-center" to={`/patients/${patient.id}`}> View </Link>
-                        <button onClick={() => handleDeleteAgreement(patient.id!)} className="w-full bg-error text-black py-1.5 rounded-xl"> Delete </button>
+                        <button onClick={() => handleDeleteAgreement(patient.id!)} className="w-full bg-error text-error-content py-1.5 rounded-xl"> Delete </button>
                     </div>
                 </div>
             ))}

@@ -1,19 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from 'react-router-dom';
+import { createPortal } from "react-dom";
 
-import { UseNavigationBreadcrumbName } from "@app/components/navigation/NavigationBreadcrumbContext";
+import { usePatchPatientName } from "../hooks/usePatchPatient";
 import { useGetPatientDetails, Patient } from "../hooks/useGetPatientDetails";
+
+import { UseRightModule } from "@app/components/right-module/rightModuleContext";
+import { UseNavigationBreadcrumbName } from "@app/components/navigation/NavigationBreadcrumbContext";
 import { PatientDiagnoseHistoryList } from "./patient-components/patientDiagnoseHistoryList";
+import { NewPatientDiagnoses } from "./patient-components/patientDiagnosePortal";
+
+
 
 export const PatientPage = () => {
     const { id } = useParams<{ id: string }>();
     const { setBreadName } = UseNavigationBreadcrumbName();
+    const { setModuleOpen, setIgnoreClickRefs } = UseRightModule();
 
+    const rightSideModule = document.getElementById('right-side-module');
     const { data: response, isLoading } = useGetPatientDetails(Number(id));
-  
     const patient = response as Patient[];
-
     const [patientName, setPatientName] = useState<string>("");
+
+    const ref = useRef(null);
+
+    useEffect(() => {
+        setIgnoreClickRefs([ref]);
+    }, [ref]);
 
     useEffect(() => {
         setBreadName('Loading...');
@@ -24,6 +37,9 @@ export const PatientPage = () => {
         }
     }, [response, setBreadName]);
 
+    const handleUsernameChange = () => {
+        usePatchPatientName(id!, patientName);
+    }
 
     if ( isLoading ) {
         return (
@@ -48,7 +64,6 @@ export const PatientPage = () => {
 
     return (
         <div className="container mx-auto px-4 flex flex-col flex-nowrap mt-5">
-            
             <div className="flex flex-row flex-wrap gap-5 justify-between items-center w-full bg-base-content p-5 rounded-t-2xl bg-250px lg:bg-40rem bannerBG drop-shadow-xl">
                 <div className="flex flex-row justify-between items-center gap-5">
                     <img src={`https://api.dicebear.com/9.x/adventurer/svg?seed=xZ${patient[0].name}`} alt="patient" className="bg-base-100 w-20 h-20 lg:w-40 lg:h-40 rounded-full" />
@@ -59,7 +74,7 @@ export const PatientPage = () => {
                     </div>
                 </div>
 
-                <button className="text-sm bg-base-100 text-base-content py-1.5 px-8 rounded-xl text-center lg:text-xl">Save Edit</button>
+                <button onClick={handleUsernameChange} className="text-sm bg-base-100 text-base-content py-1.5 px-8 rounded-xl text-center lg:text-xl">Save Edit</button>
             </div>
 
             <div className="flex flex-col gap-8 w-full bg-base-100 p-5 rounded-b-2xl drop-shadow-xl">
@@ -69,13 +84,20 @@ export const PatientPage = () => {
                 </div>
 
                 <div className="flex flex-col gap-2 w-full overflow-x-auto">
-                    <div className="text-lg">Diagnosed History</div>
+                    <div className="flex justify-between items-center">
+                        <div className="text-lg">Diagnosed History</div>
+
+                        <button ref={ref} onClick={() => setModuleOpen(true)} className="text-sm bg-base-300 text-base-content py-1.5 px-8 rounded-xl text-center lg:text-xl">
+                            Add Diagnose
+                        </button>
+                    </div>
+                    
 
                     <table className="table">
                         {/* head */}
                         <thead>
                             <tr>
-                                <th className="w-20"></th>
+                                <th className="hidden lg:block"></th>
                                 <th className="text-lg">Diseases</th>
                                 <th className="text-lg">Timestamp</th>
                                 <th></th>
@@ -88,6 +110,8 @@ export const PatientPage = () => {
                     </table>
                 </div>
             </div>
+
+            {rightSideModule && createPortal(<NewPatientDiagnoses />, rightSideModule)}
         </div>
     )
 }
