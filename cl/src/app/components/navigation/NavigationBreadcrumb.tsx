@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { UseNavigationBreadcrumbName } from './NavigationBreadcrumbContext';
 import { NavLink, useLocation } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";

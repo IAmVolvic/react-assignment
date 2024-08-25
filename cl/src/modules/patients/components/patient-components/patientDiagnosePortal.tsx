@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { UseRightModule } from "@app/components/right-module/rightModuleContext";
 import { useGetDiseases } from "@modules/patients/hooks/useGetDiseaseDetails";

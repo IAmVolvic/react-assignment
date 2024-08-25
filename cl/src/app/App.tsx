@@ -1,6 +1,5 @@
-import React, {useEffect} from "react"
+import { useEffect } from "react"
 import {Toaster} from "react-hot-toast";
-import {DevTools} from "jotai-devtools";
 import {useAtom} from "jotai";
 import {ThemeAtom} from "../atoms/ThemeAtom.tsx";
 
@@ -22,12 +21,9 @@ const App = () => {
     return (
         <>
             <Toaster/>
-
             <QueryClientProvider client={QUERY_CLIENT}>
                 <RouterProvider router={router} />
             </QueryClientProvider>
-
-            {/* <DevTools /> */}
         </>
     )
 }

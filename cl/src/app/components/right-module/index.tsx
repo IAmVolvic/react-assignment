@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { UseRightModule } from "@app/components/right-module/rightModuleContext";
 import { CgClose } from "react-icons/cg";
 import { useOutsideAlerter } from '@app/hooks/useOutsideAlerter';

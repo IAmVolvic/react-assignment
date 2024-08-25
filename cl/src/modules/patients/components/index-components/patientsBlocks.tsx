@@ -8,7 +8,6 @@ import { RemovePatient } from "./removePatient";
 export const PatientsBlocks = () => {
     const [selectedPatientId, setSelectedPatientId] = useState<number | null>(null);
     const { data: response, isLoading } = useGetPatientsDetails();
-    const deletePatientAgreementModal = document.getElementById('deletePatientAgreement') as HTMLDialogElement;
 
     if ( isLoading ) {
         return (
