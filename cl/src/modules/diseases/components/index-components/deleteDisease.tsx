@@ -1,24 +1,22 @@
 import React from 'react';
-import { useDeleteDiagnose } from '@modules/patients/hooks/useDeleteDiagnose';
 import toast from 'react-hot-toast';
+import { useDeleteDisease } from '@modules/diseases/hooks/useDeleteDiseases';
 
 
-interface RemoveDiagnoseProps {
-    diagnoseId: number | null;
+interface DeleteDiseaseProps {
+    diseaseId: number | null;
 }
 
-export const RemoveDiagnose: React.FC<RemoveDiagnoseProps> = ({ diagnoseId }) => {
+export const DeleteDisease: React.FC<DeleteDiseaseProps> = ({ diseaseId }) => {
     const handleDelete = () => {
-        if (!diagnoseId) { toast.error('Failed to remove diagnose'); return; }
-
-        useDeleteDiagnose(diagnoseId!.toString()).then(() => {
-            toast.success('Successfully removed diagnosis!');
-        });
+        if (!diseaseId) { toast.error('Failed to delete disease'); return; }
+        useDeleteDisease(diseaseId.toString());
+        toast.success('Successfully deleted disease');
     };
 
     return (
         <>
-            <dialog id="deleteDiagnoseAgreement" className="modal">
+            <dialog id="deleteDiseaseAgreement" className="modal">
                 <div className="modal-box rounded-2xl">
                     <h3 className="font-bold text-lg">Are you sure?</h3>
                     <p className="py-4">Deleting this diagnosis is permanent</p>

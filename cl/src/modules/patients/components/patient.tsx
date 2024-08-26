@@ -94,7 +94,6 @@ export const PatientPage = () => {
                     
 
                     <table className="table">
-                        {/* head */}
                         <thead>
                             <tr>
                                 <th className="hidden lg:block"></th>

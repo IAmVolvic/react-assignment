@@ -1,7 +1,12 @@
 import { useQuery } from "@tanstack/react-query"
 
 import { Api, Patients } from "@Api";
-export type Patient = Patients
+
+export type Patient = {
+    id?: number;
+    name: string;
+    totalDiagnoses: number | undefined;
+};
 
 export const useGetPatientsDetails = () => {
     const newAPI = new Api({
@@ -13,9 +18,21 @@ export const useGetPatientsDetails = () => {
 
     return useQuery({
         queryKey: ['patient-details'],
-        queryFn: async (): Promise<Patients[]> => {
-            return  newAPI.patients.patientsList()
-            .then((res) => res.data)
+        queryFn: async (): Promise<Patient[]> => {
+            
+            const patientsRes = await newAPI.patients.patientsList({ order: 'id.asc' });
+            const patients = await Promise.all(
+                patientsRes.data.map(async (patient) => {
+                    const diagnosesRes = await newAPI.diagnoses.diagnosesList({ patient_id: `eq.${patient.id}` });
+                    return {
+                        id: patient.id,
+                        name: patient.name,
+                        totalDiagnoses: diagnosesRes.data.length,
+                    };
+                })
+            );
+
+            return patients;
         },
         refetchInterval: 1000,
         refetchOnMount: true,

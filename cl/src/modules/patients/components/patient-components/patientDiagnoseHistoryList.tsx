@@ -17,7 +17,7 @@ export const PatientDiagnoseHistoryList: React.FC<RemovePatientProps> = ({ patie
 
     const handleDeleteAgreement = (id: number) => {
         setSelectedPatientId(id);
-        const deletePatientAgreementModal = document.getElementById('deletePatientAgreement');
+        const deletePatientAgreementModal = document.getElementById('deleteDiagnoseAgreement');
         if (deletePatientAgreementModal) {
             (deletePatientAgreementModal as HTMLDialogElement).showModal();
         }
@@ -70,7 +70,11 @@ export const PatientDiagnoseHistoryList: React.FC<RemovePatientProps> = ({ patie
                 </tr>
             ))}
 
-            <RemoveDiagnose diagnoseId={selectedPatientId} />
+            <tr>
+                <td>
+                    <RemoveDiagnose diagnoseId={selectedPatientId} />
+                </td>
+            </tr>
         </>
     )
 }
