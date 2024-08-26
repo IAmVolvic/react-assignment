@@ -12,7 +12,7 @@ export const useGetPatientDetails = (patientId: number) => {
     });
 
     return useQuery({
-        queryKey: ['patient-details'],
+        queryKey: ['patient-details-patients'],
         queryFn: async (): Promise<Patients[]> => {
             return  newAPI.patients.patientsList({id: `eq.${patientId}`})
             .then((res) => res.data)

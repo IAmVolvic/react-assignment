@@ -18,7 +18,7 @@ export const useGetPatientDiagnoseHistory = (patientId: number) => {
     });
 
     return useQuery({
-        queryKey: ['diagnoses-history', patientId], // Include patientId in the query key to refetch data when it changes
+        queryKey: ['diagnoses-history-patients', patientId], // Include patientId in the query key to refetch data when it changes
         queryFn: async (): Promise<DiagnosesHistory[]> => {
             const diagnosesRes = await newAPI.diagnoses.diagnosesList({ patient_id: `eq.${patientId}`, order: 'diagnosis_date.desc' });
 

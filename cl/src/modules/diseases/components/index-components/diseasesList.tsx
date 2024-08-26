@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useGetDiseases, Disease } from "../../hooks/useGetDiseases";
 import { EditDisease } from "./editDisease";
-import { DeleteDisease } from "./deleteDisease";
+import { DeleteDisease } from "./removeDisease";
 
 import { FaDisease } from "react-icons/fa6";
 import { FaTrashCan } from "react-icons/fa6";

@@ -12,7 +12,7 @@ export const useGetDiseases = () => {
     });
 
     return useQuery({
-        queryKey: ['diseases-details'],
+        queryKey: ['diseases-details-patients'],
         queryFn: async (): Promise<Diseases[]> => {
             return  newAPI.diseases.diseasesList()
             .then((res) => res.data)

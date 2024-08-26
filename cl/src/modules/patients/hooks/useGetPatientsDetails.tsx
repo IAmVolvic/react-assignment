@@ -17,7 +17,7 @@ export const useGetPatientsDetails = () => {
     });
 
     return useQuery({
-        queryKey: ['patient-details'],
+        queryKey: ['patients-details-patients'],
         queryFn: async (): Promise<Patient[]> => {
             
             const patientsRes = await newAPI.patients.patientsList({ order: 'id.asc' });

@@ -11,9 +11,8 @@ export const RemoveDiagnose: React.FC<RemoveDiagnoseProps> = ({ diagnoseId }) =>
     const handleDelete = () => {
         if (!diagnoseId) { toast.error('Failed to remove diagnose'); return; }
 
-        useDeleteDiagnose(diagnoseId!.toString()).then(() => {
-            toast.success('Successfully removed diagnosis!');
-        });
+        useDeleteDiagnose(diagnoseId!.toString());
+        toast.success('Successfully removed diagnosis!');
     };
 
     return (

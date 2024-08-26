@@ -16,7 +16,7 @@ export const useGetDiseases = () => {
     });
 
     return useQuery({
-        queryKey: ['diseases-details'],
+        queryKey: ['diseases-details-diseases'],
         queryFn: async (): Promise<Diseases[]> => {
             const diseasesRes = await newAPI.diseases.diseasesList({ order: 'id.asc' });
             const diseases = await Promise.all(
